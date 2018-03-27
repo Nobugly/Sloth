@@ -1,6 +1,6 @@
 # Sloth
 
-<img src="images/logo.png" width="25%" height=25% />
+<img src="images/logo.png" width="18%" height="18%" />
 
 **一个帮助提高开发效率的工具包**
 
