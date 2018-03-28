@@ -40,8 +40,7 @@ fun hasAvailableNetworkConnected(): Boolean {
  */
 @RequiresPermission(ACCESS_NETWORK_STATE)
 fun getNetworkType(): Int {
-    val manager = app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    return manager.activeNetworkInfo?.type ?: -1
+    return getActiveNetworkInfo().type
 }
 
 /**
@@ -51,7 +50,14 @@ fun getNetworkType(): Int {
  */
 @RequiresPermission(ACCESS_NETWORK_STATE)
 fun getNetworkTypeName(): String {
-    val manager = app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    return manager.activeNetworkInfo?.typeName ?: "Null"
+    return getActiveNetworkInfo().typeName
 }
 
+/**
+ * [getActiveNetworkInfo] 获取活跃网络信息
+ */
+@RequiresPermission(ACCESS_NETWORK_STATE)
+fun getActiveNetworkInfo(): NetworkInfo {
+    val manager = app.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    return manager.activeNetworkInfo
+}
