@@ -10,7 +10,6 @@ import com.github.sloth.app.app
 
 /**
  * [hasAvailableNetworkConnected] 是否有可用的网络连接
- * @return 如果返回true则表示有可用网络连接false则相反
  */
 @RequiresPermission(ACCESS_NETWORK_STATE)
 fun hasAvailableNetworkConnected(): Boolean {
@@ -32,11 +31,6 @@ fun hasAvailableNetworkConnected(): Boolean {
 
 /**
  * [getNetworkType] 返回网络类型
- *
- * @return NetworkType
- * 返回-1则代表没有网络连接类型
- * 返回0则表示移动网络类型
- * 返回1则表示WIFI网络类型
  */
 @RequiresPermission(ACCESS_NETWORK_STATE)
 fun getNetworkType(): Int {
@@ -45,12 +39,19 @@ fun getNetworkType(): Int {
 
 /**
  * [getNetworkTypeName] 返回网络类型名称
- * @return NetworkTypeName
- * 如果返回Null则没有网络类型连接
  */
 @RequiresPermission(ACCESS_NETWORK_STATE)
 fun getNetworkTypeName(): String {
     return getActiveNetworkInfo().typeName
+}
+
+/**
+ * [isMobileData] 当前网络是否为移动数据
+ */
+@RequiresPermission(ACCESS_NETWORK_STATE)
+fun isMobileData(): Boolean {
+    val networkInfo = getActiveNetworkInfo()
+    return networkInfo.isConnected && networkInfo.type == ConnectivityManager.TYPE_MOBILE
 }
 
 /**
