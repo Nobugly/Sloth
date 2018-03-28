@@ -55,6 +55,15 @@ fun isMobileData(): Boolean {
 }
 
 /**
+ * [isWifiConnected] 当前网络是否为WIFI
+ */
+@RequiresPermission(ACCESS_NETWORK_STATE)
+fun isWifiConnected(): Boolean {
+    val networkInfo = getActiveNetworkInfo()
+    return networkInfo.isConnected && networkInfo.type == ConnectivityManager.TYPE_WIFI
+}
+
+/**
  * [getActiveNetworkInfo] 获取活跃网络信息
  */
 @RequiresPermission(ACCESS_NETWORK_STATE)
